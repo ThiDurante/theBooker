@@ -4,13 +4,36 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsnd src/server.ts",
+    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create",
+    "predev": "npm run db:reset"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThiDurante/theBooker.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Thiago Durante",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThiDurante/theBooker/issues"
+  },
+  "homepage": "https://github.com/ThiDurante/theBooker#readme",
   "dependencies": {
+    "@types/validator": "^13.7.14",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "typescript": "^5.0.2"
+    "mysql2": "^3.2.0",
+    "sequelize": "^6.30.0",
+    "sequelize-cli": "^6.6.0",
+    "sequelize-typescript": "^2.1.5",
+    "typescript": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.15.11",
+    "nodemon": "^2.0.22",
+    "ts-node-dev": "^2.0.0"
   }
 }
