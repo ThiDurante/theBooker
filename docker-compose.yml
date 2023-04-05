@@ -19,6 +19,7 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_HOST: db
       JWT_SECRET: secret
+      NODE_ENV: development
   
   db:
     image: mysql
