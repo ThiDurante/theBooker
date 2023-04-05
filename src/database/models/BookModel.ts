@@ -5,12 +5,15 @@ import {
   Model,
   AutoIncrement,
   PrimaryKey,
+  BelongsTo,
+  ForeignKey,
+  BelongsToMany,
 } from 'sequelize-typescript';
+import User from './UserModel';
 
-interface BookAttributes {
-  id: number;
+export interface BookAttributes {
+  id?: number;
   name: string;
-  pages: string;
   numberOfPages: number;
   releaseYear: Date;
   author: string;
@@ -29,15 +32,24 @@ export default class Book extends Model<
   @AutoIncrement
   @PrimaryKey
   @Column
-  id!: number;
+  id?: number;
+
   @Column
   name!: string;
-  @Column
-  pages!: string;
+
   @Column
   numberOfPages!: number;
+
   @Column
-  realeaseYear!: Date;
+  releaseYear!: Date;
+
   @Column
   author!: string;
+
+  @BelongsToMany(() => User, {
+    through: 'UserBooks',
+    foreignKey: 'bookId',
+    otherKey: 'userId',
+  })
+  users?: User[];
 }

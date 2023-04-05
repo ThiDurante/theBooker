@@ -13,7 +13,6 @@ const sequelizeCon = new Sequelize({
   // models: [User, Book], // or [Player, Team],
 });
 
-sequelizeCon.addModels([User]);
-sequelizeCon.addModels([Book]);
+sequelizeCon.addModels([User, Book]);
 
 export default sequelizeCon;

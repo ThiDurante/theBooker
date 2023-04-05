@@ -5,8 +5,12 @@ import {
   Model,
   AutoIncrement,
   PrimaryKey,
+  ForeignKey,
+  HasMany,
+  BelongsToMany,
 } from 'sequelize-typescript';
 import Book from './BookModel';
+// import UserBooks from './UserBooksModel';
 
 interface UserAttributes {
   id: number;
@@ -14,6 +18,7 @@ interface UserAttributes {
   email: string;
   password: string;
   role: string;
+  books: Number[];
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
@@ -38,6 +43,11 @@ export default class User extends Model<
   password!: string;
   @Column
   role!: string;
-  @Column
-  inventory!: Book[];
+
+  @BelongsToMany(() => Book, {
+    through: 'UserBooks',
+    foreignKey: 'userId',
+    otherKey: 'bookId',
+  })
+  books?: Book[];
 }
