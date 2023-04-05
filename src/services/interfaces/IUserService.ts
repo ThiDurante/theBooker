@@ -10,6 +10,10 @@ export interface loginReturn {
   logged: boolean;
 }
 
+export interface loginReturnWithToken extends loginReturn {
+  token: string;
+}
+
 export default interface IUserService {
   login(user: userLogin): Promise<loginReturn>;
 }
