@@ -11,6 +11,11 @@ export default interface IUserController {
     res: Response,
     next: NextFunction
   ): Promise<Response | void>;
+  login(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void>;
   // findById(
   //   req: Request,
   //   res: Response,

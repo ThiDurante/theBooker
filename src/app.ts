@@ -34,7 +34,6 @@ class App {
 
     if (process.env.NODE_ENV === 'development') {
       const users = await User.findAll();
-
       if (users.length < 1) {
         await Promise.all(bookSeed.map((book) => Book.create(book)));
         await Promise.all(

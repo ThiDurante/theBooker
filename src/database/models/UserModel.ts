@@ -12,7 +12,7 @@ import {
 import Book from './BookModel';
 // import UserBooks from './UserBooksModel';
 
-interface UserAttributes {
+export interface UserAttributes {
   id: number;
   username: string;
   email: string;
@@ -49,5 +49,5 @@ export default class User extends Model<
     foreignKey: 'userId',
     otherKey: 'bookId',
   })
-  books?: Book[];
+  books?: Number[];
 }
