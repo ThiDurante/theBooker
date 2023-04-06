@@ -3,7 +3,6 @@ import Jwt from '../classes/Jwt';
 import Validations from '../classes/Validation';
 import IUserDAL from '../DALayer/interfaces/IUserDAL';
 import IUserService, {
-  loginReturn,
   loginReturnWithToken,
   userLogin,
 } from './interfaces/IUserService';
@@ -20,6 +19,9 @@ export default class UserService implements IUserService {
     if (findUser) {
       const noPasswordUser = findUser;
       delete noPasswordUser.password;
+      noPasswordUser.rentedBooks = JSON.parse(
+        String(noPasswordUser.rentedBooks)
+      );
       const token = new Jwt().generateToken(findUser);
       return {
         message: 'Login Successfull',
@@ -36,11 +38,14 @@ export default class UserService implements IUserService {
     return users;
   }
 
-  async insert(user: User): Promise<UserAttributes> {
+  async insert(user: UserAttributes): Promise<UserAttributes> {
     Validations.insertUser(user);
+    user.rentedBooks = JSON.stringify(user.rentedBooks);
     const newUser = await this._userDAL.insert(user);
-    const noPasswordUser = newUser as UserAttributes;
+    const noPasswordUser = newUser;
     delete noPasswordUser.password;
+    noPasswordUser.rentedBooks = JSON.parse(String(noPasswordUser.rentedBooks));
+
     return noPasswordUser;
   }
 
@@ -50,6 +55,7 @@ export default class UserService implements IUserService {
       throw new Error('User not found');
     }
     delete user.password;
+    user.rentedBooks = JSON.parse(String(user.rentedBooks));
     return user;
   }
 

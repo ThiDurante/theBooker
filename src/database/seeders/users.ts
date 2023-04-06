@@ -6,7 +6,7 @@ export default [
     ag: 31,
     role: 'admin',
     books: [1],
-    rentedBooks: [],
+    rentedBooks: '[]',
   },
   {
     username: 'moderator',
@@ -14,7 +14,7 @@ export default [
     password: 'moderator',
     role: 'moderator',
     books: [1, 2],
-    rentedBooks: [],
+    rentedBooks: '[0, 1, 2]',
   },
   {
     username: 'johndoe',
@@ -22,7 +22,7 @@ export default [
     password: 'password123',
     role: 'user',
     books: [5, 4],
-    rentedBooks: [],
+    rentedBooks: '[0]',
   },
   {
     username: 'janedoe',
@@ -30,7 +30,7 @@ export default [
     password: 'password456',
     role: 'user',
     books: [1, 2],
-    rentedBooks: [],
+    rentedBooks: '[0]',
   },
   {
     username: 'bobsmith',
@@ -38,7 +38,7 @@ export default [
     password: 'password789',
     role: 'user',
     books: [1, 8],
-    rentedBooks: [],
+    rentedBooks: '[0]',
   },
   {
     username: 'alicewang',
@@ -46,7 +46,7 @@ export default [
     password: 'passwordabc',
     role: 'user',
     books: [1, 6],
-    rentedBooks: [],
+    rentedBooks: '[0]',
   },
   {
     username: 'samsingh',
@@ -54,6 +54,6 @@ export default [
     password: 'passworddef',
     role: 'user',
     books: [8, 9],
-    rentedBooks: [],
+    rentedBooks: '[0]',
   },
 ];

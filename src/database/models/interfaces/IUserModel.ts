@@ -1,19 +1,28 @@
 import { Model, Optional } from 'sequelize';
 import Book from '../BookModel';
 
-interface IUserithId {
+interface IUserWithId {
   id: number;
   username: string;
   email: string;
   password: string;
   books?: Number[];
+  rentedBooks: string | [];
+}
+export interface IUserReady {
+  id: number;
+  username: string;
+  email: string;
+  password?: string;
+  books?: Number[];
+  rentedBooks: [];
 }
 
-interface UserCreationAttributes extends Optional<IUserithId, 'id'> {}
+interface UserCreationAttributes extends Optional<IUserWithId, 'id'> {}
 
 export default interface UserModel
-  extends Model<IUserithId, UserCreationAttributes>,
-    IUserithId {
+  extends Model<IUserWithId, UserCreationAttributes>,
+    IUserWithId {
   createdAt?: Date;
   updatedAt?: Date;
 }

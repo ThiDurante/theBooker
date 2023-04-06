@@ -22,13 +22,13 @@ export default class UserDAL implements IUserDAL {
     return users;
   }
 
-  async insert(user: User): Promise<UserAttributes> {
+  async insert(user: UserAttributes): Promise<UserAttributes> {
     const newUser = await User.create(user);
     return newUser.dataValues;
   }
 
   async findById(id: number): Promise<UserAttributes | null> {
-    const user = await User.findByPk(id);
+    const user = await User.findOne({ where: { id }, include: Book });
     if (!user) return null;
     return user.dataValues;
   }

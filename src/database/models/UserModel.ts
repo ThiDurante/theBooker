@@ -1,16 +1,15 @@
-import { Optional } from 'sequelize';
+import { DataTypes, Optional } from 'sequelize';
 import {
   Table,
   Column,
   Model,
   AutoIncrement,
   PrimaryKey,
-  ForeignKey,
-  HasMany,
   BelongsToMany,
+  DataType,
+  Index,
 } from 'sequelize-typescript';
 import Book from './BookModel';
-import { number } from 'joi';
 // import UserBooks from './UserBooksModel';
 
 export interface UserAttributes {
@@ -19,8 +18,8 @@ export interface UserAttributes {
   email: string;
   password?: string;
   role: string;
-  books?: Number[];
-  rentedBooks: Number[];
+  books?: number[];
+  rentedBooks: string | [];
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
@@ -46,12 +45,12 @@ export default class User extends Model<
   @Column
   role!: string;
   @Column
-  rentedBooks!: Number[];
+  rentedBooks!: string;
 
   @BelongsToMany(() => Book, {
     through: 'UserBooks',
     foreignKey: 'userId',
     otherKey: 'bookId',
   })
-  books?: Number[];
+  books?: number[];
 }
