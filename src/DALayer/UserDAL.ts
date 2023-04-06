@@ -20,6 +20,10 @@ export default class UserDAL implements IUserDAL {
     });
     return users;
   }
+  async insert(user: User): Promise<UserAttributes> {
+    const newUser = await User.create(user);
+    return newUser.dataValues;
+  }
 }
 
 // const user = await User.findAll({ include: Book });

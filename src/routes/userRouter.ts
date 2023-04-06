@@ -14,7 +14,7 @@ const userController = new UserController(userService);
 
 userRouter
   .post('/login', errorMiddleware, userController.login.bind(userController))
-  .post('/', errorMiddleware, userController.createUser.bind(userController))
+  .post('/', errorMiddleware, userController.insert.bind(userController))
   .get(
     '/',
     authMiddleware,

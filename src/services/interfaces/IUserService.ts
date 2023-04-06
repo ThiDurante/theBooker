@@ -18,4 +18,5 @@ export interface loginReturnWithToken extends loginReturn {
 export default interface IUserService {
   login(user: userLogin): Promise<loginReturnWithToken>;
   getAll(): Promise<User[]>;
+  insert(user: User): Promise<UserAttributes>;
 }

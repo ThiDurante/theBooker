@@ -18,7 +18,7 @@ export interface UserAttributes {
   email: string;
   password?: string;
   role: string;
-  books: Number[];
+  books?: Number[];
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}

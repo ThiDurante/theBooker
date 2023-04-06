@@ -1,17 +1,17 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 
 export default interface IUserController {
-  createUser(
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ): Promise<Response | void>;
   getAll(
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<Response | void>;
   login(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void>;
+  insert(
     req: Request,
     res: Response,
     next: NextFunction

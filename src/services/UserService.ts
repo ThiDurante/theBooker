@@ -1,4 +1,4 @@
-import User from '../database/models/UserModel';
+import User, { UserAttributes } from '../database/models/UserModel';
 import Jwt from '../classes/Jwt';
 import Validations from '../classes/Validation';
 import IUserDAL from '../DALayer/interfaces/IUserDAL';
@@ -34,5 +34,15 @@ export default class UserService implements IUserService {
   async getAll(): Promise<User[]> {
     const users = await this._userDAL.getAll();
     return users;
+  }
+
+  async insert(user: User): Promise<UserAttributes> {
+    Validations.insertUser(user);
+    const newUser = await this._userDAL.insert(user);
+    const noPasswordUser = newUser as UserAttributes;
+    delete noPasswordUser.password;
+    console.log(noPasswordUser);
+
+    return noPasswordUser;
   }
 }
