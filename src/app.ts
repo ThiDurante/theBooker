@@ -37,6 +37,7 @@ class App {
     if (process.env.NODE_ENV === 'development') {
       const users = await User.findAll();
       if (users.length < 1) {
+        console.log('DB is being populated, please wait');
         await Promise.all(bookSeed.map((book) => Book.create(book)));
         await Promise.all(
           usersSeed.map((userSeed) => {
@@ -49,6 +50,7 @@ class App {
             );
           })
         );
+        console.log('DB has been populated :)');
       } else {
         console.log('DB already populated');
       }

@@ -10,6 +10,7 @@ const sequelizeCon = new Sequelize({
   username: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   port: Number(process.env.MYSQL_PORT),
+  logging: false,
   // models: [User, Book], // or [Player, Team],
 });
 
