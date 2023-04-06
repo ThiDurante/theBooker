@@ -15,6 +15,7 @@ const userController = new UserController(userService);
 userRouter
   .post('/login', userController.login.bind(userController))
   .post('/', userController.insert.bind(userController))
-  .get('/', authMiddleware, userController.getAll.bind(userController));
+  .get('/', authMiddleware, userController.getAll.bind(userController))
+  .delete('/:id', authMiddleware, userController.remove.bind(userController));
 
 export default userRouter;

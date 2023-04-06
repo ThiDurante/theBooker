@@ -24,6 +24,9 @@ export default class UserDAL implements IUserDAL {
     const newUser = await User.create(user);
     return newUser.dataValues;
   }
+  async remove(id: number): Promise<void> {
+    await User.destroy({ where: { id } });
+  }
 }
 
 // const user = await User.findAll({ include: Book });

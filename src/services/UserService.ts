@@ -41,8 +41,9 @@ export default class UserService implements IUserService {
     const newUser = await this._userDAL.insert(user);
     const noPasswordUser = newUser as UserAttributes;
     delete noPasswordUser.password;
-    console.log(noPasswordUser);
-
     return noPasswordUser;
+  }
+  async remove(id: number): Promise<void> {
+    await this._userDAL.remove(id);
   }
 }

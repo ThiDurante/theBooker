@@ -58,4 +58,14 @@ export default class UserController implements IUserController {
       next(error);
     }
   }
+
+  async remove(
+    req: Request,
+    res: Response,
+    _next: NextFunction
+  ): Promise<Response | void> {
+    const { id } = req.params;
+    await this._userService.remove(Number(id));
+    return res.status(204).json({ message: 'User deleted' });
+  }
 }

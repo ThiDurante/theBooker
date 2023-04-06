@@ -26,11 +26,11 @@ export default interface IUserController {
   //   res: Response,
   //   next: NextFunction
   // ): Promise<Response | void>
-  // removeUser(
-  //   req: Request,
-  //   res: Response,
-  //   next: NextFunction
-  // ): Promise<Response | void>
+  remove(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void>;
 }
 
 interface IUser {

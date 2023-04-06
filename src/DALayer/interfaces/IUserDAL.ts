@@ -5,4 +5,5 @@ export default interface IUserDAL {
   getByEmail(userLogin: userLogin): Promise<UserAttributes | null>;
   getAll(): Promise<User[]>;
   insert(user: User): Promise<UserAttributes>;
+  remove(id: number): Promise<void>;
 }
