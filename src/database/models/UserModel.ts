@@ -16,7 +16,7 @@ export interface UserAttributes {
   id: number;
   username: string;
   email: string;
-  password: string;
+  password?: string;
   role: string;
   books: Number[];
 }

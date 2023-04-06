@@ -1,4 +1,4 @@
-import IUserDAL from '../../DALayer/interfaces/IUserDAL';
+import { UserAttributes } from '../../database/models/UserModel';
 
 export interface userLogin {
   email: string;
@@ -12,8 +12,9 @@ export interface loginReturn {
 
 export interface loginReturnWithToken extends loginReturn {
   token: string;
+  user?: UserAttributes;
 }
 
 export default interface IUserService {
-  login(user: userLogin): Promise<loginReturn>;
+  login(user: userLogin): Promise<loginReturnWithToken>;
 }

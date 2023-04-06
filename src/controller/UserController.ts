@@ -46,9 +46,11 @@ export default class UserController implements IUserController {
       const userLogin = req.body;
       const logged = await this._userService.login(userLogin);
       if (logged.logged) {
-        return res
-          .status(200)
-          .json({ message: logged.message, token: 'token' });
+        return res.status(200).json({
+          message: logged.message,
+          token: logged.token,
+          user: logged.user,
+        });
       }
       return res.status(401).json({ message: logged.message });
     } catch (error) {
