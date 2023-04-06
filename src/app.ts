@@ -6,6 +6,7 @@ import 'dotenv/config';
 import usersSeed from './database/seeders/users';
 import bookSeed from './database/seeders/books';
 import Book from './database/models/BookModel';
+import errorMiddleware from './middlewares/errorMiddleware';
 class App {
   public app: express.Express;
 
@@ -19,6 +20,7 @@ class App {
     this.app.use(express.json());
     this.app.use('/user', userRouter);
     this.app.get('/user', () => console.log('Its working'));
+    this.app.use(errorMiddleware);
   }
 
   public start(PORT: number): void {

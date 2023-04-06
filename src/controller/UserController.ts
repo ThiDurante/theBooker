@@ -10,13 +10,17 @@ export default class UserController implements IUserController {
   async insert(
     req: Request,
     res: Response,
-    _next: NextFunction
+    next: NextFunction
   ): Promise<Response | void> {
-    const user = req.body;
-    const createdUser = await this._userService.insert(user);
-    return res
-      .status(200)
-      .json({ message: 'Creation Successfull', data: createdUser });
+    try {
+      const user = req.body;
+      const createdUser = await this._userService.insert(user);
+      return res
+        .status(200)
+        .json({ message: 'Creation Successfull', data: createdUser });
+    } catch (error) {
+      next(error);
+    }
   }
 
   async getAll(

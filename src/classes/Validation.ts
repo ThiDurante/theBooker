@@ -2,6 +2,7 @@ import Joi = require('joi');
 import { userLogin } from '../services/interfaces/IUserService';
 import { joiPasswordExtendCore } from 'joi-password';
 import User from '../database/models/UserModel';
+import { off } from 'process';
 
 export default class Validations {
   static login(user: userLogin): boolean {
@@ -9,7 +10,10 @@ export default class Validations {
       email: Joi.string().email().required(),
       password: Joi.string().min(6).required(),
     });
-    loginSchema.validate(user);
+    const { error } = loginSchema.validate(user);
+    if (error) {
+      throw new Error(error.message);
+    }
     return true;
   }
 
@@ -17,11 +21,15 @@ export default class Validations {
     const userSchema = Joi.object({
       email: Joi.string().email().required(),
       password: Joi.string().min(6).required(),
-      name: Joi.string().min(3).required(),
+      username: Joi.string().min(3).required(),
       role: Joi.string().required(),
+      age: Joi.number().max(120),
       books: Joi.array().items(Joi.number()),
     });
-    userSchema.validate(user);
+    const { error } = userSchema.validate(user);
+    if (error) {
+      throw new Error(error.message);
+    }
     return true;
   }
 }

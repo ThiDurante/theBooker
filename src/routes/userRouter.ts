@@ -13,13 +13,8 @@ const userService = new UserService(userDAL);
 const userController = new UserController(userService);
 
 userRouter
-  .post('/login', errorMiddleware, userController.login.bind(userController))
-  .post('/', errorMiddleware, userController.insert.bind(userController))
-  .get(
-    '/',
-    authMiddleware,
-    errorMiddleware,
-    userController.getAll.bind(userController)
-  );
+  .post('/login', userController.login.bind(userController))
+  .post('/', userController.insert.bind(userController))
+  .get('/', authMiddleware, userController.getAll.bind(userController));
 
 export default userRouter;

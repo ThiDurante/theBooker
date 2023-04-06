@@ -7,8 +7,10 @@ const errorMiddleware = (
   _next: NextFunction
 ): Response | void => {
   if (error.message === 'invalid token')
-    return res.status(500).json({ error: 'Your token is invalid!' });
-  return res.status(500).json({ error: error.message });
+    return res.status(401).json({ error: 'Your token is invalid!' });
+  if (error.message.includes('required'))
+    return res.status(422).json({ error: error.message });
+  return res.status(501).json({ error: error.message });
 };
 
 export default errorMiddleware;
