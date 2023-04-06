@@ -10,6 +10,7 @@ import {
   BelongsToMany,
 } from 'sequelize-typescript';
 import Book from './BookModel';
+import { number } from 'joi';
 // import UserBooks from './UserBooksModel';
 
 export interface UserAttributes {
@@ -19,6 +20,7 @@ export interface UserAttributes {
   password?: string;
   role: string;
   books?: Number[];
+  rentedBooks: Number[];
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
@@ -43,6 +45,8 @@ export default class User extends Model<
   password!: string;
   @Column
   role!: string;
+  @Column
+  rentedBooks!: Number[];
 
   @BelongsToMany(() => Book, {
     through: 'UserBooks',
