@@ -20,4 +20,5 @@ export default interface IUserService {
   getAll(): Promise<User[]>;
   insert(user: UserAttributes): Promise<UserAttributes>;
   remove(id: number): Promise<void>;
+  findById(id: number): Promise<UserAttributes>;
 }

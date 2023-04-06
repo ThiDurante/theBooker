@@ -59,6 +59,22 @@ export default class UserController implements IUserController {
     }
   }
 
+  async findById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const { id } = req.params;
+      const user = await this._userService.findById(Number(id));
+      if (user) {
+        return res.status(200).json(user);
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async remove(
     req: Request,
     res: Response,

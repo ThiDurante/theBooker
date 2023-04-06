@@ -6,4 +6,5 @@ export default interface IUserDAL {
   getAll(): Promise<User[]>;
   insert(user: User): Promise<UserAttributes>;
   remove(id: number): Promise<void>;
+  findById(id: number): Promise<UserAttributes | null>;
 }

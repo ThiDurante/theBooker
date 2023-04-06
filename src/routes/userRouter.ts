@@ -16,6 +16,7 @@ userRouter
   .post('/login', userController.login.bind(userController))
   .post('/', userController.insert.bind(userController))
   .get('/', authMiddleware, userController.getAll.bind(userController))
-  .delete('/:id', authMiddleware, userController.remove.bind(userController));
+  .delete('/:id', authMiddleware, userController.remove.bind(userController))
+  .get('/:id', authMiddleware, userController.findById.bind(userController));
 
 export default userRouter;

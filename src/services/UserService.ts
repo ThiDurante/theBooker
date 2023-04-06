@@ -43,6 +43,16 @@ export default class UserService implements IUserService {
     delete noPasswordUser.password;
     return noPasswordUser;
   }
+
+  async findById(id: number): Promise<UserAttributes> {
+    const user = await this._userDAL.findById(id);
+    if (!user) {
+      throw new Error('User not found');
+    }
+    delete user.password;
+    return user;
+  }
+
   async remove(id: number): Promise<void> {
     await this._userDAL.remove(id);
   }
