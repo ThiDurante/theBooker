@@ -1,4 +1,4 @@
-import { UserAttributes } from '../../database/models/UserModel';
+import User, { UserAttributes } from '../../database/models/UserModel';
 
 export interface userLogin {
   email: string;
@@ -17,4 +17,5 @@ export interface loginReturnWithToken extends loginReturn {
 
 export default interface IUserService {
   login(user: userLogin): Promise<loginReturnWithToken>;
+  getAll(): Promise<User[]>;
 }

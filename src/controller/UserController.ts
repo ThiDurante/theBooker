@@ -23,11 +23,11 @@ export default class UserController implements IUserController {
   }
 
   async getAll(
-    req: Request,
+    _req: Request,
     res: Response,
-    next: NextFunction
+    _next: NextFunction
   ): Promise<Response | void> {
-    const user = await User.findAll({ include: Book });
+    const user = await this._userService.getAll();
     return res.status(200).json(user);
   }
 

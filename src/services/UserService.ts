@@ -1,3 +1,4 @@
+import User from '../database/models/UserModel';
 import Jwt from '../classes/Jwt';
 import Validations from '../classes/Validation';
 import IUserDAL from '../DALayer/interfaces/IUserDAL';
@@ -28,5 +29,10 @@ export default class UserService implements IUserService {
       };
     }
     return { message: 'Login Failed', logged: false, token: '' };
+  }
+
+  async getAll(): Promise<User[]> {
+    const users = await this._userDAL.getAll();
+    return users;
   }
 }

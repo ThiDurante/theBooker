@@ -1,6 +1,7 @@
 import { userLogin } from '../services/interfaces/IUserService';
 import User, { UserAttributes } from '../database/models/UserModel';
 import IUserDAL from './interfaces/IUserDAL';
+import Book from '../database/models/BookModel';
 
 export default class UserDAL implements IUserDAL {
   async getByEmail(userLogin: userLogin): Promise<UserAttributes | null> {
@@ -12,4 +13,13 @@ export default class UserDAL implements IUserDAL {
     }
     return null;
   }
+  async getAll(): Promise<User[]> {
+    const users = await User.findAll({
+      attributes: { exclude: ['password'] },
+      include: Book,
+    });
+    return users;
+  }
 }
+
+// const user = await User.findAll({ include: Book });
