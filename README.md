@@ -8,11 +8,11 @@ A full project developed by me!!
 
 This app is all about books and those who love to read them, here we have a system where you can register your user and select which books you have from our database, our database doesn't have your book? No problem, give us the info about it and we will update our DB to include it!
 
-After that you can search for books to see which user has them and ask for a trade or to borrow the book from him! Or search for users and see which book that user has!
+After that you can search for books to see which user has them and ask for a trade or to borrow the book from him! Also search for users and see which book that user has!
 
-The main idea is to have people read more books and also keep track of their collection, what they read and didn't read and provide a platform for them to trade books beetwen users!
+The main idea is to have people read more books and also keep track of their collection, what they read and didn't read and provide a platform for them to trade books between users!
 
-This project is 30% done!
+This project is around 30% done!
 
 ## Roadmap
 
