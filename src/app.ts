@@ -25,7 +25,11 @@ class App {
 
   public start(PORT: number): void {
     this.app.listen(PORT, async () => {
-      await sequelizeCon.sync();
+      try {
+        await sequelizeCon.sync();
+      } catch (error) {
+        console.log(error);
+      }
       await this.seed();
       console.log(`Listening on port: ${PORT}`);
     });

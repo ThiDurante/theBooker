@@ -4,8 +4,11 @@ import Book from '../models/BookModel';
 import 'dotenv/config';
 import { Dialect } from 'sequelize';
 
+console.log(process.env.MYSQL_HOST, process.env.DB_NAME);
+
 const sequelizeCon = new Sequelize({
   database: process.env.DB_NAME,
+  host: process.env.MYSQL_HOST,
   dialect: (process.env.MYSQL_DIALECT as Dialect) || 'mysql',
   username: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,

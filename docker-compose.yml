@@ -15,12 +15,14 @@ services:
     ports:
       - 3001:3001
     environment:
+      MYSQL_HOST: db
+      DB_NAME: theBooker_db
       MYSQL_USER: root
       MYSQL_PASSWORD: password
-      MYSQL_HOST: db
       JWT_SECRET: batata
-      NODE_ENV: development
-  
+      MYSQL_DIALECT: mysql
+      WAIT_HOSTS: db:3306
+
   db:
     image: mysql
     container_name: theBooker_db
@@ -30,6 +32,4 @@ services:
       - 33060:33060
     environment:
       MYSQL_ROOT_PASSWORD: password
-networks:
-  default:
-    name: theBookers_net
+
