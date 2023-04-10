@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as bcrypt from 'bcrypt';
 import userRouter from './routes/userRouter';
 import sequelizeCon from './database/config/connection';
 import User from './database/models/UserModel';
@@ -37,6 +38,11 @@ class App {
 
   private async seed(): Promise<void> {
     console.log(process.env.NODE_ENV);
+    usersSeed.map((user) => {
+      const saltRounds = 5;
+      const encryptedPassword = bcrypt.hashSync(user.password, saltRounds);
+      user.password = encryptedPassword;
+    });
 
     if (process.env.NODE_ENV === 'development') {
       const users = await User.findAll();

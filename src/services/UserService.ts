@@ -6,6 +6,7 @@ import IUserService, {
   loginReturnWithToken,
   userLogin,
 } from './interfaces/IUserService';
+import * as bcrypt from 'bcrypt';
 
 export default class UserService implements IUserService {
   private _userDAL: IUserDAL;
@@ -17,6 +18,9 @@ export default class UserService implements IUserService {
     Validations.login(user);
     const findUser = await this._userDAL.getByEmail(user);
     if (findUser) {
+      if (!bcrypt.compareSync(user.password, findUser.password as string)) {
+        return { message: 'Wrong Password', logged: false, token: '' };
+      }
       const noPasswordUser = findUser;
       delete noPasswordUser.password;
       noPasswordUser.rentedBooks = JSON.parse(
