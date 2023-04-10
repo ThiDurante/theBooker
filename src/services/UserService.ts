@@ -42,15 +42,24 @@ export default class UserService implements IUserService {
     return users;
   }
 
-  async insert(user: UserAttributes): Promise<UserAttributes> {
+  async insert(user: UserAttributes): Promise<loginReturnWithToken> {
     Validations.insertUser(user);
     user.rentedBooks = JSON.stringify(user.rentedBooks);
+    const salt = 5;
+    const passwordHash = bcrypt.hashSync(user.password as string, salt);
+    user.password = passwordHash;
     const newUser = await this._userDAL.insert(user);
     const noPasswordUser = newUser;
     delete noPasswordUser.password;
     noPasswordUser.rentedBooks = JSON.parse(String(noPasswordUser.rentedBooks));
 
-    return noPasswordUser;
+    const token = new Jwt().generateToken(noPasswordUser);
+    return {
+      message: 'Login Successfull',
+      logged: true,
+      token,
+      user: noPasswordUser,
+    };
   }
 
   async findById(id: number): Promise<UserAttributes> {
