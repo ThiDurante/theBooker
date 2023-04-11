@@ -18,7 +18,7 @@ export interface UserAttributes {
   email: string;
   password?: string;
   role: string;
-  books?: number[];
+  books: number[];
   rentedBooks: string | [];
 }
 
@@ -52,5 +52,5 @@ export default class User extends Model<
     foreignKey: 'userId',
     otherKey: 'bookId',
   })
-  books?: number[];
+  books!: number[];
 }

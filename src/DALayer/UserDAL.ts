@@ -7,6 +7,7 @@ export default class UserDAL implements IUserDAL {
   async getByEmail(userLogin: userLogin): Promise<UserAttributes | null> {
     const findUser = await User.findOne({
       where: [{ email: userLogin.email }],
+      include: Book,
     });
     if (findUser) {
       return findUser.dataValues;
@@ -23,8 +24,23 @@ export default class UserDAL implements IUserDAL {
   }
 
   async insert(user: UserAttributes): Promise<UserAttributes> {
-    const newUser = await User.create(user);
-    return newUser.dataValues;
+    await Promise.all(
+      await User.create(user).then(async (userCreated) =>
+        (
+          await Book.findAll()
+        ).map((bookDB) => {
+          if (user.books.includes(bookDB.id as number)) {
+            userCreated.$add('books', bookDB);
+          }
+        })
+      )
+    );
+    const newUser = await User.findOne({
+      where: { email: user.email },
+      include: Book,
+    });
+
+    return newUser?.dataValues as User;
   }
 
   async findById(id: number): Promise<UserAttributes | null> {

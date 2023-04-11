@@ -8,6 +8,7 @@ import usersSeed from './database/seeders/users';
 import bookSeed from './database/seeders/books';
 import Book from './database/models/BookModel';
 import errorMiddleware from './middlewares/errorMiddleware';
+import encryptPassword from './utils/encryptPassword';
 class App {
   public app: express.Express;
 
@@ -39,9 +40,7 @@ class App {
   private async seed(): Promise<void> {
     console.log(process.env.NODE_ENV);
     usersSeed.map((user) => {
-      const saltRounds = 5;
-      const encryptedPassword = bcrypt.hashSync(user.password, saltRounds);
-      user.password = encryptedPassword;
+      user.password = encryptPassword(user as User);
     });
 
     if (process.env.NODE_ENV === 'development') {

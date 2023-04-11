@@ -15,6 +15,9 @@ export default class UserController implements IUserController {
     try {
       const user = req.body;
       const createdUser = await this._userService.insert(user);
+      if (createdUser.message.includes('already')) {
+        return res.status(400).json(createdUser);
+      }
       return res
         .status(200)
         .json({ message: 'Creation Successfull', data: createdUser });

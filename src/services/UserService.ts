@@ -7,6 +7,7 @@ import IUserService, {
   userLogin,
 } from './interfaces/IUserService';
 import * as bcrypt from 'bcrypt';
+import encryptPassword from '../utils/encryptPassword';
 
 export default class UserService implements IUserService {
   private _userDAL: IUserDAL;
@@ -44,10 +45,20 @@ export default class UserService implements IUserService {
 
   async insert(user: UserAttributes): Promise<loginReturnWithToken> {
     Validations.insertUser(user);
+    const checkIfUserExists = await this._userDAL.getByEmail({
+      email: user.email,
+      password: user.password as string,
+    });
+    if (checkIfUserExists) {
+      return {
+        message: 'User email already exists',
+        logged: false,
+        token: '',
+      };
+    }
     user.rentedBooks = JSON.stringify(user.rentedBooks);
-    const salt = 5;
-    const passwordHash = bcrypt.hashSync(user.password as string, salt);
-    user.password = passwordHash;
+    user.password = encryptPassword(user);
+
     const newUser = await this._userDAL.insert(user);
     const noPasswordUser = newUser;
     delete noPasswordUser.password;
