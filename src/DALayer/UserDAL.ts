@@ -15,6 +15,17 @@ export default class UserDAL implements IUserDAL {
     return null;
   }
 
+  async getByUsername(user: UserAttributes): Promise<UserAttributes | null> {
+    const findUser = await User.findOne({
+      where: [{ username: user.username }],
+      include: Book,
+    });
+    if (findUser) {
+      return findUser.dataValues;
+    }
+    return null;
+  }
+
   async getAll(): Promise<User[]> {
     const users = await User.findAll({
       attributes: { exclude: ['password'] },
