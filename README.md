@@ -28,9 +28,11 @@ This project is around 30% done!
 
 - Building user route (done)
 
-- password encription for user
+- password encription for user (done)
 
-- add new book to user
+- add new book to user (done)
+
+- check if username/email already exists before creating a new user (halfway)
 
 - Building Book route
 
