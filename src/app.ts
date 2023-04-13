@@ -9,6 +9,7 @@ import bookSeed from './database/seeders/books';
 import Book from './database/models/BookModel';
 import errorMiddleware from './middlewares/errorMiddleware';
 import encryptPassword from './utils/encryptPassword';
+import bookRouter from './routes/bookRouter';
 class App {
   public app: express.Express;
 
@@ -21,7 +22,7 @@ class App {
     // set middlewares and routers
     this.app.use(express.json());
     this.app.use('/user', userRouter);
-    this.app.get('/user', () => console.log('Its working'));
+    this.app.use('/books', bookRouter);
     this.app.use(errorMiddleware);
   }
 
