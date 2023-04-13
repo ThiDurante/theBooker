@@ -17,4 +17,9 @@ export default interface IBookController {
     res: Response,
     next: NextFunction
   ): Promise<Response | void>;
+  update(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void>;
 }

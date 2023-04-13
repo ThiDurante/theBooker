@@ -12,5 +12,6 @@ const bookController = new BookController(bookService);
 bookRouter.get('/', bookController.getAll.bind(bookController));
 bookRouter.post('/', bookController.create.bind(bookController));
 bookRouter.delete('/:id', bookController.removeBook.bind(bookController));
+bookRouter.patch('/:id', bookController.update.bind(bookController));
 
 export default bookRouter;

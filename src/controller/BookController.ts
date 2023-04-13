@@ -42,4 +42,18 @@ export default class BookController implements IBookController {
       next(error);
     }
   }
+
+  async update(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const { id } = req.params;
+      const updatedBook = await this._bookService.update(Number(id), req.body);
+      return res.status(201).json(updatedBook);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

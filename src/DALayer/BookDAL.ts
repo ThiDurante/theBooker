@@ -19,4 +19,9 @@ export default class BookDAL implements IBookDal {
     const createdBook = await Book.create(book);
     return createdBook;
   }
+
+  async update(id: number, book: BookAttributes): Promise<BookAttributes> {
+    await Book.update(book, { where: { id } });
+    return { id, ...book };
+  }
 }

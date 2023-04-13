@@ -29,4 +29,15 @@ export default class BookService implements IBookService {
     const createdBook = await this._bookDAL.create(book);
     return { message: 'Book successfully created', book: createdBook };
   }
+
+  async update(
+    id: number,
+    book: BookAttributes
+  ): Promise<{ message: string; book: BookAttributes }> {
+    Validations.bookValidation(book);
+    const createdBook = await this._bookDAL.update(id, book);
+    console.log(createdBook);
+
+    return { message: 'Book successfully updated', book: createdBook };
+  }
 }

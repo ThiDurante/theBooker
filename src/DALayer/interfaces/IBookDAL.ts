@@ -5,4 +5,5 @@ export default interface IBookDal {
   findById(id: number): Promise<BookAttributes | null>;
   removeBook(id: number): Promise<void>;
   create(book: BookAttributes): Promise<BookAttributes>;
+  update(id: number, book: BookAttributes): Promise<BookAttributes>;
 }

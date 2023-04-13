@@ -6,4 +6,8 @@ export default interface IBookService {
   create(
     book: BookAttributes
   ): Promise<{ message: string; book: BookAttributes }>;
+  update(
+    id: number,
+    book: BookAttributes
+  ): Promise<{ message: string; book: BookAttributes }>;
 }
