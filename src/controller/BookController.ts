@@ -9,7 +9,7 @@ export default class BookController implements IBookController {
     this._bookService = bookService;
   }
   async getAll(
-    req: Request,
+    _req: Request,
     res: Response,
     _next: NextFunction
   ): Promise<Response | void> {

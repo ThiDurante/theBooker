@@ -1,8 +1,6 @@
 import Joi = require('joi');
 import { userLogin } from '../services/interfaces/IUserService';
-import { joiPasswordExtendCore } from 'joi-password';
-import User, { UserAttributes } from '../database/models/UserModel';
-import { off } from 'process';
+import { UserAttributes } from '../database/models/UserModel';
 import { BookAttributes } from '../database/models/BookModel';
 
 export default class Validations {
@@ -41,6 +39,7 @@ export default class Validations {
       numberOfPages: Joi.number().required(),
       releaseYear: Joi.date().required(),
       author: Joi.string().required(),
+      user: Joi.object(),
     });
 
     const { error } = bookSchema.validate(book);

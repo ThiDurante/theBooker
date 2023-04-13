@@ -35,6 +35,7 @@ export default class BookService implements IBookService {
     book: BookAttributes
   ): Promise<{ message: string; book: BookAttributes }> {
     Validations.bookValidation(book);
+
     const createdBook = await this._bookDAL.update(id, book);
     console.log(createdBook);
 
