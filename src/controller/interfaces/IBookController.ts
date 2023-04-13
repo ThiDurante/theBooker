@@ -12,4 +12,9 @@ export default interface IBookController {
     res: Response,
     next: NextFunction
   ): Promise<Response | void>;
+  create(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void>;
 }

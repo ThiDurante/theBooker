@@ -1,6 +1,7 @@
 import IBookService from './interfaces/IBookService';
 import IBookDal from '../DALayer/interfaces/IBookDAL';
-import Book from '../database/models/BookModel';
+import Book, { BookAttributes } from '../database/models/BookModel';
+import Validations from '../classes/Validation';
 
 export default class BookService implements IBookService {
   private _bookDAL: IBookDal;
@@ -19,5 +20,13 @@ export default class BookService implements IBookService {
       return { message: 'Deleted' };
     }
     return { message: "Book doesn't exist." };
+  }
+
+  async create(
+    book: BookAttributes
+  ): Promise<{ message: string; book: BookAttributes }> {
+    Validations.bookValidation(book);
+    const createdBook = await this._bookDAL.create(book);
+    return { message: 'Book successfully created', book: createdBook };
   }
 }

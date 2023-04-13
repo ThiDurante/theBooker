@@ -29,4 +29,17 @@ export default class BookController implements IBookController {
     }
     return res.status(400).json({ message: result.message });
   }
+
+  async create(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const createdBook = await this._bookService.create(req.body);
+      return res.status(201).json(createdBook);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

@@ -14,4 +14,9 @@ export default class BookDAL implements IBookDal {
   async removeBook(id: number): Promise<void> {
     await Book.destroy({ where: { id } });
   }
+
+  async create(book: BookAttributes): Promise<BookAttributes> {
+    const createdBook = await Book.create(book);
+    return createdBook;
+  }
 }

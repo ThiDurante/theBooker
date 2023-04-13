@@ -3,6 +3,7 @@ import { userLogin } from '../services/interfaces/IUserService';
 import { joiPasswordExtendCore } from 'joi-password';
 import User, { UserAttributes } from '../database/models/UserModel';
 import { off } from 'process';
+import { BookAttributes } from '../database/models/BookModel';
 
 export default class Validations {
   static login(user: userLogin): boolean {
@@ -28,6 +29,21 @@ export default class Validations {
       rentedBooks: Joi.array().items(Joi.number()).required(),
     });
     const { error } = userSchema.validate(user);
+    if (error) {
+      throw new Error(error.message);
+    }
+    return true;
+  }
+
+  static bookValidation(book: BookAttributes): boolean {
+    const bookSchema = Joi.object({
+      name: Joi.string().required(),
+      numberOfPages: Joi.number().required(),
+      releaseYear: Joi.date().required(),
+      author: Joi.string().required(),
+    });
+
+    const { error } = bookSchema.validate(book);
     if (error) {
       throw new Error(error.message);
     }
