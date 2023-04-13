@@ -66,7 +66,7 @@ I user a pattern for commits that makes them easily readable and faster to under
 
 [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 
-These are the commits I made while developing the project:
+Here is an example of how they work:
 
 ![App Screenshot](https://i.imgur.com/hBJc5om.png)
 
