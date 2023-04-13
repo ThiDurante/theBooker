@@ -32,11 +32,11 @@ This project is around 30% done!
 
 - add new book to user (done)
 
-- check if username/email already exists before creating a new user (halfway)
+- check if username/email already exists before creating a new user (done)
 
-- Building Book route (started)
+- Building Book route (basic crud done)
 
-- Book Filtering
+- Book Filtering (leaving for front-end)
 
 - Book Reviews
 
