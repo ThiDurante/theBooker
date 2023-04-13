@@ -34,7 +34,7 @@ This project is around 30% done!
 
 - check if username/email already exists before creating a new user (halfway)
 
-- Building Book route
+- Building Book route (started)
 
 - Book Filtering
 
