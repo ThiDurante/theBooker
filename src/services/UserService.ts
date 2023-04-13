@@ -46,7 +46,6 @@ export default class UserService implements IUserService {
   async insert(user: UserAttributes): Promise<loginReturnWithToken> {
     Validations.insertUser(user);
     const checkDB = await this.checkEmailAndUsernameCreation(user);
-    console.log(checkDB);
 
     if (checkDB?.message) {
       return checkDB;

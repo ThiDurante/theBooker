@@ -11,4 +11,13 @@ export default class BookService implements IBookService {
     const allBooks = await this._bookDAL.getAll();
     return allBooks;
   }
+
+  async removeBook(id: number): Promise<{ message: string }> {
+    const checkBookExists = await this._bookDAL.findById(id);
+    if (checkBookExists) {
+      await this._bookDAL.removeBook(id);
+      return { message: 'Deleted' };
+    }
+    return { message: "Book doesn't exist." };
+  }
 }

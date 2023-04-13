@@ -7,4 +7,9 @@ export default interface IBookController {
     res: Response,
     next: NextFunction
   ): Promise<Response | void>;
+  removeBook(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void>;
 }
