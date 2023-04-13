@@ -26,5 +26,10 @@ bookRouter.patch(
   authMiddleware,
   bookController.update.bind(bookController)
 );
+bookRouter.get(
+  '/:id',
+  authMiddleware,
+  bookController.findById.bind(bookController)
+);
 
 export default bookRouter;

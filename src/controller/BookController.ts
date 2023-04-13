@@ -56,4 +56,18 @@ export default class BookController implements IBookController {
       next(error);
     }
   }
+
+  async findById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const { id } = req.params;
+      const book = await this._bookService.findById(Number(id));
+      return res.status(200).json(book);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

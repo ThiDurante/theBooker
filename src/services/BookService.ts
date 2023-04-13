@@ -40,4 +40,12 @@ export default class BookService implements IBookService {
 
     return { message: 'Book successfully updated', book: createdBook };
   }
+
+  async findById(id: number): Promise<BookAttributes> {
+    const book = await this._bookDAL.findById(id);
+    if (!book) {
+      throw new Error('Book not found');
+    }
+    return book;
+  }
 }

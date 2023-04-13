@@ -22,4 +22,9 @@ export default interface IBookController {
     res: Response,
     next: NextFunction
   ): Promise<Response | void>;
+  findById(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void>;
 }

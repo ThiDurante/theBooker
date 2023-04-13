@@ -10,4 +10,5 @@ export default interface IBookService {
     id: number,
     book: BookAttributes
   ): Promise<{ message: string; book: BookAttributes }>;
+  findById(id: number): Promise<BookAttributes>;
 }
