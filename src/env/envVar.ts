@@ -10,4 +10,6 @@ export default {
   PORT: process.env.PORT,
   NODE_ENV: process.env.NODE_ENV,
   JWT_SECRET: process.env.JWT_SECRET,
+  EMAIL_USER: process.env.EMAIL_USER as string,
+  EMAIL_PASSWORD: process.env.EMAIL_PASSWORD as string,
 };
