@@ -27,7 +27,6 @@ export default class BookController implements IBookController {
     if (result.message === 'Deleted') {
       return res.status(204).json({ message: 'Book successfully deleted' });
     }
-    return res.status(400).json({ message: result.message });
   }
 
   async create(

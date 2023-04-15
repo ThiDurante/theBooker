@@ -20,7 +20,7 @@ export default class UserService implements IUserService {
     const findUser = await this._userDAL.getByEmail(user);
     if (findUser) {
       if (!bcrypt.compareSync(user.password, findUser.password as string)) {
-        return { message: 'Wrong Password', logged: false, token: '' };
+        throw new Error('Wrong password');
       }
       const noPasswordUser = findUser;
       delete noPasswordUser.password;
@@ -35,7 +35,7 @@ export default class UserService implements IUserService {
         user: noPasswordUser,
       };
     }
-    return { message: 'Login Failed', logged: false, token: '' };
+    throw new Error('Login failed');
   }
 
   async getAll(): Promise<User[]> {

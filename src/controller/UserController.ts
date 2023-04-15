@@ -56,7 +56,6 @@ export default class UserController implements IUserController {
           user: logged.user,
         });
       }
-      return res.status(401).json({ message: logged.message });
     } catch (error) {
       next(error);
     }

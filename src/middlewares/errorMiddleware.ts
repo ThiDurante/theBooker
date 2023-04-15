@@ -12,6 +12,9 @@ const errorMiddleware = (
     return res.status(422).json({ error: error.message });
   if (error.message.includes('found'))
     return res.status(404).json({ error: error.message });
+  if (error.message.includes('Wrong')) {
+    return res.status(401).json({ error: error.message });
+  }
   return res.status(501).json({ error: error.message });
 };
 

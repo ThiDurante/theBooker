@@ -19,7 +19,7 @@ export default class BookService implements IBookService {
       await this._bookDAL.removeBook(id);
       return { message: 'Deleted' };
     }
-    return { message: "Book doesn't exist." };
+    throw new Error('Book not found');
   }
 
   async create(
