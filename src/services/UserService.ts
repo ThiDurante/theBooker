@@ -45,11 +45,7 @@ export default class UserService implements IUserService {
 
   async insert(user: UserAttributes): Promise<loginReturnWithToken> {
     Validations.insertUser(user);
-    const checkDB = await this.checkEmailAndUsernameCreation(user);
-
-    if (checkDB?.message) {
-      return checkDB;
-    }
+    await this.checkEmailAndUsernameCreation(user);
     user.rentedBooks = JSON.stringify(user.rentedBooks);
     user.password = encryptPassword(user);
 
@@ -83,25 +79,17 @@ export default class UserService implements IUserService {
 
   private async checkEmailAndUsernameCreation(
     user: UserAttributes
-  ): Promise<null | { message: string; logged: boolean; token: string }> {
+  ): Promise<null> {
     const checkIfUserEmailExists = await this._userDAL.getByEmail({
       email: user.email,
       password: user.password as string,
     });
     if (checkIfUserEmailExists) {
-      return {
-        message: 'User email already exists',
-        logged: false,
-        token: '',
-      };
+      throw new Error('Email already exists');
     }
     const checkIfUsernameExists = await this._userDAL.getByUsername(user);
     if (checkIfUsernameExists) {
-      return {
-        message: 'Username already exists',
-        logged: false,
-        token: '',
-      };
+      throw new Error('Username already exists');
     }
     return null;
   }
