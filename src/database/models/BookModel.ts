@@ -44,6 +44,9 @@ export default class Book extends Model<
   @Column
   author!: string;
 
+  @Column
+  image!: string;
+
   @BelongsToMany(() => User, {
     through: 'UserBooks',
     foreignKey: 'bookId',

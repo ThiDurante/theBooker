@@ -40,6 +40,7 @@ export default class Validations {
       releaseYear: Joi.date().required(),
       author: Joi.string().required(),
       user: Joi.object(),
+      image: Joi.string(),
     });
 
     const { error } = bookSchema.validate(book);
