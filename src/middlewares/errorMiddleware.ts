@@ -15,7 +15,7 @@ const errorMiddleware = (
   if (error.message.includes('Wrong')) {
     return res.status(401).json({ error: error.message });
   }
-  return res.status(501).json({ error: error.message });
+  return res.status(500).json({ error: error.message });
 };
 
 export default errorMiddleware;
