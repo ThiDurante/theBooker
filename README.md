@@ -18,10 +18,10 @@ This project is around 30% done!
 
 - Choose theme for project (done)
 
-- Start defining entities and methods (done)
+- Defining entities and methods (done)
   ![Exalidraw](https://i.imgur.com/TWNKlME.png)
 
-- Defining Kanban started board (done)
+- Defining Kanban starter board (done)
   ![Kanban](https://i.imgur.com/9SnkeEO.png)
 
 - Start building DB and seeds (done)
