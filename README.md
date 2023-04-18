@@ -46,6 +46,8 @@ This project is around 30% done!
 
 - New features?
 
+- Email verification - send email to user (done)
+
 # Installation and use
 
 ```bash
@@ -72,7 +74,7 @@ Here is an example of how they work:
 
 ## References
 
-- What I've learned in my journey
+- What I've learned in my journey 😂
 
 ## Things I learned/improved in this Project!
 
@@ -84,10 +86,11 @@ Here is an example of how they work:
 - Heritage
 - Db Modelling
 - Swagger
+- Nodemailer
 
 ## Stacks
 
-**Back-end:** Node, TypeScript, Sequelize, MySQL, Docker, Jwt, Joi, Eslint, Swagger
+**Back-end:** Node, TypeScript, Sequelize, MySQL, Docker, Jwt, Joi, Eslint, Swagger, Nodemailer
 
 ## 🚀 About me
 

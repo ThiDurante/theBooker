@@ -1,8 +1,7 @@
 import * as express from 'express';
-import * as bcrypt from 'bcrypt';
 import userRouter from './routes/userRouter';
 import sequelizeCon from './database/config/connection';
-import User from './database/models/UserModel';
+import User, { UserAttributes } from './database/models/UserModel';
 import 'dotenv/config';
 import usersSeed from './database/seeders/users';
 import bookSeed from './database/seeders/books';
@@ -10,7 +9,6 @@ import Book from './database/models/BookModel';
 import errorMiddleware from './middlewares/errorMiddleware';
 import encryptPassword from './utils/encryptPassword';
 import bookRouter from './routes/bookRouter';
-import Mailer from './classes/Mailer';
 class App {
   public app: express.Express;
 
@@ -42,7 +40,7 @@ class App {
   private async seed(): Promise<void> {
     console.log(process.env.NODE_ENV);
     usersSeed.map((user) => {
-      user.password = encryptPassword(user as User);
+      user.password = encryptPassword(user as UserAttributes);
     });
 
     if (process.env.NODE_ENV === 'development') {

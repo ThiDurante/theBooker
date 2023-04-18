@@ -31,19 +31,14 @@ export default class Book extends Model<
   @PrimaryKey
   @Column
   id?: number;
-
   @Column
   name!: string;
-
   @Column
   numberOfPages!: number;
-
   @Column
   releaseYear!: Date;
-
   @Column
   author!: string;
-
   @Column
   image!: string;
 

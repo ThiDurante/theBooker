@@ -31,8 +31,6 @@ export default class Mailer {
       html: body,
     };
     try {
-      console.log(to, subject, body);
-
       await this.transporter.sendMail(mailOptions);
     } catch (error) {
       console.log(error);
