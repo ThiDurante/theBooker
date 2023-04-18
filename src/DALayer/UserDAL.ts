@@ -63,6 +63,10 @@ export default class UserDAL implements IUserDAL {
   async remove(id: number): Promise<void> {
     await User.destroy({ where: { id } });
   }
+
+  async verifyEmail(id: number): Promise<void> {
+    await User.update({ emailVerified: true }, { where: { id } });
+  }
 }
 
 // const user = await User.findAll({ include: Book });

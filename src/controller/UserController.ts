@@ -1,6 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import IUserController from './interfaces/IUserController';
 import IUserService from '../services/interfaces/IUserService';
+import Mailer from '../classes/Mailer';
 
 export default class UserController implements IUserController {
   private _userService: IUserService;
@@ -85,5 +86,36 @@ export default class UserController implements IUserController {
     const { id } = req.params;
     await this._userService.remove(Number(id));
     return res.status(204).json({ message: 'User deleted' });
+  }
+
+  async verifyEmail(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      // generate token in backend, encrypt and store on frontend, send back request once verified
+      const { id } = req.params;
+      await this._userService.verifyEmail(Number(id));
+      return res.status(200).json({ message: 'Email verified' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async emailToken(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
+    try {
+      const { email } = req.body;
+      const sixDigitRandom = Math.floor(100000 + Math.random() * 900000);
+      const mailer = new Mailer();
+      await mailer.sendMail(email, 'Verify your email', String(sixDigitRandom));
+      return res.status(200).json({ token: sixDigitRandom });
+    } catch (error) {
+      next(error);
+    }
   }
 }

@@ -93,4 +93,8 @@ export default class UserService implements IUserService {
     }
     return null;
   }
+
+  async verifyEmail(id: number): Promise<void> {
+    await this._userDAL.verifyEmail(id);
+  }
 }

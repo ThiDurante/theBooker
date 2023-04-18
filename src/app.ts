@@ -10,6 +10,7 @@ import Book from './database/models/BookModel';
 import errorMiddleware from './middlewares/errorMiddleware';
 import encryptPassword from './utils/encryptPassword';
 import bookRouter from './routes/bookRouter';
+import Mailer from './classes/Mailer';
 class App {
   public app: express.Express;
 

@@ -22,6 +22,8 @@ services:
       JWT_SECRET: batata
       MYSQL_DIALECT: mysql
       WAIT_HOSTS: db:3306
+      EMAIL_PASSWORD: passwordemail
+      EMAIL_USER: user@gmail.com
 
   db:
     image: mysql

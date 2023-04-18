@@ -21,12 +21,17 @@ export default interface IUserController {
     res: Response,
     next: NextFunction
   ): Promise<Response | void>;
-  // updateUser(
-  //   req: Request,
-  //   res: Response,
-  //   next: NextFunction
-  // ): Promise<Response | void>
   remove(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void>;
+  verifyEmail(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void>;
+  emailToken(
     req: Request,
     res: Response,
     next: NextFunction

@@ -11,13 +11,31 @@ export default class Mailer {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 587,
-      secure: false,
       auth: {
         user: this.user,
         pass: this.password,
       },
-      tls: { rejectUnauthorized: false },
     });
     this.transporter = transporter;
   }
+
+  public sendMail = async (
+    to: string,
+    subject: string,
+    body: string
+  ): Promise<void> => {
+    const mailOptions = {
+      from: this.user,
+      to,
+      subject,
+      html: body,
+    };
+    try {
+      console.log(to, subject, body);
+
+      await this.transporter.sendMail(mailOptions);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }

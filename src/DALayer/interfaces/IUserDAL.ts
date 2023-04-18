@@ -8,4 +8,5 @@ export default interface IUserDAL {
   insert(user: UserAttributes): Promise<UserAttributes>;
   remove(id: number): Promise<void>;
   findById(id: number): Promise<UserAttributes | null>;
+  verifyEmail(id: number): Promise<void>;
 }

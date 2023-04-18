@@ -20,6 +20,7 @@ export interface UserAttributes {
   role: string;
   books: number[];
   rentedBooks: string | [];
+  emailVerified: boolean;
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
@@ -46,6 +47,8 @@ export default class User extends Model<
   role!: string;
   @Column
   rentedBooks!: string;
+  @Column({ defaultValue: false })
+  emailVerified!: boolean;
 
   @BelongsToMany(() => Book, {
     through: 'UserBooks',

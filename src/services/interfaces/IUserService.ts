@@ -21,4 +21,5 @@ export default interface IUserService {
   insert(user: UserAttributes): Promise<loginReturnWithToken>;
   remove(id: number): Promise<void>;
   findById(id: number): Promise<UserAttributes>;
+  verifyEmail(id: number): Promise<void>;
 }
