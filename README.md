@@ -12,7 +12,7 @@ After that you can search for books to see which user has them and ask for a tra
 
 The main idea is to have people read more books and also keep track of their collection, what they read and didn't read and provide a platform for them to trade books between users!
 
-This project is around 30% done!
+This project is around 60% done!
 
 ## Roadmap
 
