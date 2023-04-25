@@ -77,6 +77,7 @@ export default class UserService implements IUserService {
     await this._userDAL.remove(id);
   }
 
+  // check if email and username already exists
   private async checkEmailAndUsernameCreation(
     user: UserAttributes
   ): Promise<null> {

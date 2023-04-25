@@ -17,6 +17,7 @@ class App {
     this.config();
   }
 
+  // Set the middlewares and the routes
   private config(): void {
     // set middlewares and routers
     this.app.use(express.json());
@@ -25,6 +26,7 @@ class App {
     this.app.use(errorMiddleware);
   }
 
+  // Start the server
   public start(PORT: number): void {
     this.app.listen(PORT, async () => {
       try {
@@ -37,6 +39,7 @@ class App {
     });
   }
 
+  // Seed the database for development
   private async seed(): Promise<void> {
     console.log(process.env.NODE_ENV);
     usersSeed.map((user) => {
